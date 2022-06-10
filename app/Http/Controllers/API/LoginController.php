@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\FarmerUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Request as FacadesRequest;
+use App\Http\Requests\OtpRequest;
 use App\Http\Requests\LoginRequest;
 
 class LoginController extends Controller
@@ -23,5 +24,11 @@ class LoginController extends Controller
             'message' => "Registration successfully",
             'user' => $data
         ]);
+    }
+    public function verifyOtp(Request $request)
+    {
+        // dd($request->all());
+        $data = $this->Login->verifiyOtp($request->all());
+        return $data;
     }
 }
