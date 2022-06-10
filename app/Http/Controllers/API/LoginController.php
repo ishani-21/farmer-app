@@ -27,7 +27,6 @@ class LoginController extends Controller
     }
     public function verifyOtp(Request $request)
     {
-        // dd($request->all());
         $data = $this->Login->verifiyOtp($request->all());
         return $data;
     }

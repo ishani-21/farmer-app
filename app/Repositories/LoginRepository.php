@@ -34,17 +34,26 @@ class LoginRepository implements LoginContract
          return ['result_status' => 2, 'message' => "please try again" . $e];
       }
    }
+
    public function verifiyOtp($data)
    {
+      DB::beginTransaction();
+      try {
          $user = FarmerUser::latest()->first();
          if ($user->raw_otp == $data['raw_otp']) {
             $user->raw_is_verify = 1;
             $user->save();
+            DB::commit();
             return  $user;
          } else {
             return response([
                'message' => 'Otp invalid'
             ]);
          }
+      } catch (\Throwable $e) {
+         DB::rollBack();
+         Log::debug('Verify Otp : ', ['error' => $e]);
+         return ['result_status' => 2, 'message' => "please try again" . $e];
+      }
    }
 }
