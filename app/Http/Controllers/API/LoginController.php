@@ -21,8 +21,8 @@ class LoginController extends Controller
     {
         $data = $this->Login->create($request->all());
         return response([
-            'message' => "Registration successfully",
-            'user' => $data
+            'user' => $data,
+            'message' => "Otp successfully send"
         ]);
     }
     public function verifyOtp(Request $request)
