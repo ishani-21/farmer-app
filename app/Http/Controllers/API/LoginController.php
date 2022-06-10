@@ -20,7 +20,7 @@ class LoginController extends Controller
         $data = $this->Login->create($request->all());
         return response([
             'user' => $data,
-            'message' => "Registration successfully"
+            'message' => "Otp successfully send"
         ]);
     }
 }
