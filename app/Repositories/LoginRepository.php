@@ -61,4 +61,10 @@ class LoginRepository implements LoginContract
          return ['result_status' => 2, 'message' => "please try again" . $e];
       }
    }
+
+   public function getPlantDetails()
+   {
+      $data = FarmerUser::get();
+      return $data;
+   }
 }

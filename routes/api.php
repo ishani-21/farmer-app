@@ -23,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('registration', [LoginController::class, 'create']);
 Route::post('logout', [LoginController::class, 'logout']);
 Route::post('verifyOtp', [LoginController::class, 'verifyOtp']);
+Route::get('getPlantDetails', [LoginController::class, 'getPlantDetails']);
