@@ -25,9 +25,16 @@ class LoginController extends Controller
             'message' => "Otp successfully send"
         ]);
     }
+
     public function verifyOtp(Request $request)
     {
         $data = $this->Login->verifiyOtp($request->all());
+        return $data;
+    }
+
+    public function getPlantDetails()
+    {
+        $data = $this->Login->getPlantDetails();
         return $data;
     }
 }
