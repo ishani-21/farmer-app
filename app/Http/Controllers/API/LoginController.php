@@ -38,9 +38,9 @@ class LoginController extends Controller
 
         return response()->json(['message' => 'Successfully logged out']);
     }
-    // public function guard()
-    // {
-    //     return Auth::guard();
-    // }
+    public function guard()
+    {
+        return Auth::guard();
+    }
 
 }
