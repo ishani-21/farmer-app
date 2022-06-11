@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 use App\Http\Requests\OtpRequest;
 use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -21,7 +22,7 @@ class LoginController extends Controller
     {
         $data = $this->Login->create($request->all());
         return response([
-            'user' => $data,
+            'OTP' => $data->raw_otp,
             'message' => "Otp successfully send"
         ]);
     }
@@ -37,4 +38,17 @@ class LoginController extends Controller
         $data = $this->Login->getPlantDetails();
         return $data;
     }
+
+    public function logout()
+    {
+        return Auth::guard()->logout();
+
+        return response()->json(['message' => 'Successfully logged out']);
+    }
+    
+    // public function guard()
+    // {
+    //     return Auth::guard();
+    // }
+
 }

@@ -6,6 +6,7 @@ use App\Contracts\LoginContract;
 use App\Models\FarmerUser;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class LoginRepository implements LoginContract
 {
@@ -14,9 +15,11 @@ class LoginRepository implements LoginContract
       DB::beginTransaction();
       try {
          $otp = mt_rand(1000, 9999);
+         // $var = Str::random(32);
          $user_data = FarmerUser::where('raw_mobile', $data['raw_mobile'])->first();
          if ($user_data) {
             $user_data->raw_otp = $otp;
+            // $user_data->api_token = $var;
             $user_data->save();
             DB::commit();
             return $user_data;
@@ -44,10 +47,12 @@ class LoginRepository implements LoginContract
             $user->raw_is_verify = 1;
             $user->save();
             DB::commit();
-            return  $user;
+            return response([
+               'message' => 'Otp Verify Successfully'
+            ]);
          } else {
             return response([
-               'message' => 'Otp invalid'
+               'message' => 'Otp Invalid'
             ]);
          }
       } catch (\Throwable $e) {
