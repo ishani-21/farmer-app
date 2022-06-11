@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Contracts\LoginContract;
 use App\Models\FarmerUser;
+use App\Models\PlantDetail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -64,7 +65,7 @@ class LoginRepository implements LoginContract
 
    public function getPlantDetails()
    {
-      $data = FarmerUser::get();
+      $data = PlantDetail::get();
       return $data;
    }
 }
