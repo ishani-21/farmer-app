@@ -63,9 +63,9 @@ class LoginRepository implements LoginContract
       }
    }
 
-   public function getPlantDetails()
+   public function getPlantDetails(array $data)
    {
-      $data = PlantDetail::get();
+      $data = PlantDetail::where('raw_title', 'like', '%' . $data['raw_title'] . '%')->get();
       return $data;
    }
 }

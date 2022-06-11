@@ -6,5 +6,5 @@ interface LoginContract
 {
    public function create(array $data);
    public function verifiyOtp(array $data);
-   public function getPlantDetails();
+   public function getPlantDetails(array $data);
 }

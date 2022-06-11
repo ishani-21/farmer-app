@@ -33,9 +33,9 @@ class LoginController extends Controller
         return $data;
     }
 
-    public function getPlantDetails()
+    public function getPlantDetails(Request $request)
     {
-        $data = $this->Login->getPlantDetails();
+        $data = $this->Login->getPlantDetails($request->all());
         return $data;
     }
 
